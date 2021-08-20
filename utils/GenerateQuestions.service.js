@@ -168,3 +168,28 @@ exports.internQuestions = async function () {
             },
         ])
 }
+
+exports.addTeam = async function () {
+    return inquirer
+        .prompt([
+            {
+                type: 'list',
+                name: 'buildTeamChoice',
+                message: 'Would you like to add a team member?',
+                choices: [
+                    {
+                        name: 'Add Engineer',
+                        value: 0
+                    },
+                    {
+                        name: 'Add Intern',
+                        value: 1
+                    },
+                    {
+                        name: 'Finish Building Team',
+                        value: 2
+                    },
+                ],
+            }
+        ]);
+}
