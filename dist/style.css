@@ -1,0 +1,33 @@
+.team-header {
+    background: red;
+    text-align: center;
+    color: white;
+    height: 100px;
+    padding: 10px;
+}
+
+.team-header h3{
+    padding: 15px;
+    font-size: 35px;
+}
+
+.team-section {
+    padding: 15px;
+}
+
+.card {
+    box-shadow: 0 0px 20px 0 rgba(0,0,0,0.2);
+    max-width: 380px;
+}
+
+.icon {
+    padding-right: 10px;
+}
+
+.card-body {
+    margin-bottom: 0;
+}
+
+.card-header {
+    background-color: #10B1E0 !important;
+}
