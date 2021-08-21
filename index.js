@@ -1,5 +1,4 @@
-var fs = require('fs');
-let inquirer = require('inquirer');
+let fs = require('fs');
 const {managerQuestions, engineerQuestions, internQuestions, addTeam} = require('./utils/GenerateQuestions.service');
 const {generateTeamMemberHtml} = require('./utils/htmlGenerator');
 const Manager = require('./lib/Manager');
@@ -29,6 +28,7 @@ managerQuestions().then(async (answers) => {
                 engineerAnswers.gitHubUsername)
 
             allTeamMembers.push(engineer)
+
         } else if (answer == 1) {
             let internAnswers = await internQuestions();
             let intern = new Intern(internAnswers.internName,
@@ -42,21 +42,21 @@ managerQuestions().then(async (answers) => {
             let allMembersHTML = ""
             let reportHTML = ""
 
-            templateHtml = fs.readFileSync(__dirname + '/template.html', 'utf8');
+            console.log(allTeamMembers)
+
+            templateHtml = fs.readFileSync(__dirname + '/src/template.html', 'utf8');
             allTeamMembers.forEach((member) => {
                 allMembersHTML += generateTeamMemberHtml(member)
             })
             reportHTML = templateHtml.replace('{{team}}',allMembersHTML);
 
             fs.writeFileSync('./dist/index.html', reportHTML)
+
+            console.log('index.html file generated');
         }
     }
 }).catch((error) => {
-    if (error.isTtyError) {
-        // Prompt couldn't be rendered in the current environment
-    } else {
-        // Something else went wrong
-    }
+    console.log(error)
 });
 
 
