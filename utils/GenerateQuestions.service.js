@@ -1,4 +1,5 @@
 let inquirer = require('inquirer');
+let emailValidator = require('email-validator');
 
 exports.managerQuestions = function () {
     return inquirer
@@ -32,12 +33,10 @@ exports.managerQuestions = function () {
                 name: 'managerEmail',
                 message: 'What is your Email?',
                 validate: managerEmail => {
-                    if (managerEmail) {
+                    if(emailValidator.validate(managerEmail)){
                         return true;
-                    } else {
-                        console.log('Please enter your Email!');
-                        return false;
-                    }
+                    } else
+                        return "please enter a valid email";
                 }
 
             },
@@ -46,12 +45,10 @@ exports.managerQuestions = function () {
                 name: 'managerOfficeNbr',
                 message: 'What is your Office Number?',
                 validate: managerOfficeNbr => {
-                    if (managerOfficeNbr) {
-                        return true;
-                    } else {
-                        console.log('Please enter your Office Number!');
-                        return false;
+                    if ((!managerOfficeNbr) || (isNaN(managerOfficeNbr))) {
+                        return "please enter a number";
                     }
+                    return true;
                 }
 
             },
@@ -89,13 +86,11 @@ exports.engineerQuestions = async function () {
                 type: 'input',
                 name: 'engineerEmail',
                 message: 'What is the engineer Email?',
-                validate: engineerEmail => {
-                    if (engineerEmail) {
+                validate: engineerEmail =>  {
+                    if(emailValidator.validate(engineerEmail)){
                         return true;
-                    } else {
-                        console.log('Please enter the engineer Email!');
-                        return false;
-                    }
+                    } else
+                        return "please enter a valid email";
                 }
             },
             {
@@ -144,13 +139,11 @@ exports.internQuestions = async function () {
                 type: 'input',
                 name: 'internEmail',
                 message: 'What is the Intern Email?',
-                validate: engineerEmail => {
-                    if (engineerEmail) {
+                validate: internEmail =>  {
+                    if(emailValidator.validate(internEmail)){
                         return true;
-                    } else {
-                        console.log('Please enter the Intern Email!');
-                        return false;
-                    }
+                    } else
+                        return "please enter a valid email";
                 }
             },
             {
