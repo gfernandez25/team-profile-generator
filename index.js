@@ -42,8 +42,6 @@ managerQuestions().then(async (answers) => {
             let allMembersHTML = ""
             let reportHTML = ""
 
-            console.log(allTeamMembers)
-
             templateHtml = fs.readFileSync(__dirname + '/src/template.html', 'utf8');
             allTeamMembers.forEach((member) => {
                 allMembersHTML += generateTeamMemberHtml(member)
